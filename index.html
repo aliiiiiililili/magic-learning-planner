@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>پلنر جادویی یادگیری</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#efe6ff;--bg2:#cfe9ff;--card:rgba(255,255,255,.72);--ink:#2a1f4d;--muted:#6a5f8e;--acc:#8b5cf6;--acc2:#ec4899;--gold:#f5b335;--edge:rgba(139,92,246,.25);--sh:#5b3bb0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#150d33;--bg2:#0b2347;--card:rgba(40,28,86,.62);--ink:#f1ebff;--muted:#b4a8de;--edge:rgba(167,139,250,.3);--sh:#3b2380}}
+:root[data-theme="dark"]{--bg1:#150d33;--bg2:#0b2347;--card:rgba(40,28,86,.62);--ink:#f1ebff;--muted:#b4a8de;--edge:rgba(167,139,250,.3);--sh:#3b2380}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;font-family:Vazirmatn,Tahoma,sans-serif;color:var(--ink);background:linear-gradient(160deg,var(--bg1),var(--bg2)) fixed;min-height:100vh;overflow-x:hidden}
+.star{position:fixed;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.5;animation:tw 4s infinite;pointer-events:none}
+@keyframes tw{50%{opacity:.05}}
+.orb{position:fixed;border-radius:50%;filter:blur(1px);pointer-events:none;animation:fl 9s ease-in-out infinite;opacity:.55}
+.o1{width:150px;height:150px;top:8%;left:-40px;background:radial-gradient(circle at 30% 28%,#fff,#c4b5fd 35%,#7c3aed)}
+.o2{width:110px;height:110px;bottom:12%;right:-30px;background:radial-gradient(circle at 30% 28%,#fff,#f9a8d4 35%,#db2777);animation-delay:-4s}
+@keyframes fl{50%{transform:translateY(-26px)}}
+main{max-width:760px;margin:0 auto;padding:18px 14px 60px;position:relative}
+.hero{text-align:center;padding:10px 0 6px}
+.scene{perspective:700px;height:110px;display:flex;justify-content:center;align-items:center}
+.cube{width:64px;height:64px;position:relative;transform-style:preserve-3d;animation:spin 14s linear infinite}
+.cube i{position:absolute;inset:0;display:grid;place-items:center;font-size:30px;font-style:normal;border:2px solid rgba(255,255,255,.7);border-radius:14px;background:linear-gradient(135deg,rgba(139,92,246,.85),rgba(236,72,153,.8));box-shadow:inset 0 0 18px rgba(255,255,255,.5)}
+.cube i:nth-child(1){transform:translateZ(32px)}.cube i:nth-child(2){transform:rotateY(180deg) translateZ(32px)}
+.cube i:nth-child(3){transform:rotateY(90deg) translateZ(32px)}.cube i:nth-child(4){transform:rotateY(-90deg) translateZ(32px)}
+.cube i:nth-child(5){transform:rotateX(90deg) translateZ(32px)}.cube i:nth-child(6){transform:rotateX(-90deg) translateZ(32px)}
+@keyframes spin{to{transform:rotateX(360deg) rotateY(360deg)}}
+h1{font-size:28px;font-weight:800;margin:6px 0 2px;background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 1px transparent}
+.sub{color:var(--muted);margin:0 0 12px;font-size:14px}
+.xp{display:flex;align-items:center;gap:10px;justify-content:center;font-size:13px;font-weight:600}
+.bar{width:160px;height:12px;border-radius:9px;background:rgba(139,92,246,.2);box-shadow:inset 0 2px 4px rgba(0,0,0,.25);overflow:hidden}
+.bar b{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),#fb7185);transition:width .5s}
+.panel{background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--edge);border-radius:24px;padding:16px;margin:16px 0;box-shadow:0 18px 0 -12px var(--sh),0 22px 40px rgba(60,30,140,.22);transition:transform .15s;transform-style:preserve-3d}
+.panel h2{font-size:17px;margin:0 0 12px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted);font-weight:600}
+select,input[type=text],input[type=number],input[type=time],input[type=date]{font:inherit;color:var(--ink);padding:10px 12px;border-radius:14px;border:1px solid var(--edge);background:var(--card);box-shadow:inset 0 2px 4px rgba(0,0,0,.12);width:100%}
+select:focus,input:focus,button:focus-visible,summary:focus-visible{outline:3px solid var(--acc2);outline-offset:2px}
+.btn{font:inherit;font-weight:800;color:#fff;border:0;border-radius:16px;padding:13px 22px;cursor:pointer;background:linear-gradient(180deg,#a78bfa,#7c3aed);box-shadow:0 6px 0 #4c1d95,0 12px 20px rgba(76,29,149,.35);transition:transform .08s,box-shadow .08s}
+.btn:active{transform:translateY(5px);box-shadow:0 1px 0 #4c1d95}
+.btn.big{width:100%;font-size:17px;background:linear-gradient(180deg,#f472b6,#db2777);box-shadow:0 6px 0 #831843,0 12px 22px rgba(131,24,67,.35)}
+.btn.big:active{box-shadow:0 1px 0 #831843}
+.btn.sm{padding:9px 14px;font-size:13px}
+details.book{border:1px solid var(--edge);border-radius:16px;margin:8px 0;background:var(--card);box-shadow:0 4px 0 var(--edge)}
+details.book summary{cursor:pointer;padding:11px 14px;font-weight:600;display:flex;align-items:center;gap:10px;list-style:none}
+details.book summary::-webkit-details-marker{display:none}
+.spine{width:8px;height:26px;border-radius:4px;background:linear-gradient(var(--acc),var(--acc2));box-shadow:2px 0 0 rgba(0,0,0,.2)}
+summary small{margin-inline-start:auto;color:var(--muted)}
+.tl{padding:4px 14px 12px;display:grid;gap:6px}
+.tl label{display:flex;gap:8px;align-items:center;font-size:14px}
+input[type=checkbox]{width:19px;height:19px;accent-color:var(--acc)}
+.add{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin-top:10px}
+.days{display:flex;gap:8px;overflow-x:auto;padding:6px 2px 12px;margin-bottom:4px}
+.day{flex:0 0 auto;min-width:78px;text-align:center;border:1px solid var(--edge);background:var(--card);color:var(--ink);font:inherit;font-size:12px;padding:8px 10px;border-radius:14px;cursor:pointer;box-shadow:0 4px 0 var(--edge)}
+.day b{display:block;font-size:17px}
+.day.on{background:linear-gradient(180deg,#a78bfa,#7c3aed);color:#fff;transform:translateY(2px);box-shadow:0 2px 0 #4c1d95}
+.task{display:flex;gap:12px;align-items:center;padding:12px;margin:10px 0;border-radius:18px;background:var(--card);border:1px solid var(--edge);box-shadow:0 5px 0 var(--edge);transition:transform .2s,opacity .2s}
+.task.done{opacity:.55;transform:scale(.98)}
+.task.done .tt{text-decoration:line-through}
+.ico{width:46px;height:46px;flex:none;border-radius:14px;display:grid;place-items:center;font-size:22px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.2),0 3px 8px rgba(0,0,0,.2)}
+.study .ico{background:linear-gradient(135deg,#a78bfa,#6366f1)}.review .ico{background:linear-gradient(135deg,#34d399,#06b6d4)}.test .ico{background:linear-gradient(135deg,#fbbf24,#f43f5e)}
+.tx{flex:1;min-width:0}.tt{font-weight:600;font-size:15px}.ts{font-size:12px;color:var(--muted)}
+.chk{width:30px;height:30px}
+.warn{background:rgba(245,179,53,.2);border:1px solid var(--gold);border-radius:14px;padding:10px 12px;font-size:13px;margin-bottom:10px}
+.rules{display:grid;gap:8px;font-size:13.5px;line-height:1.9;margin:0;padding:0;list-style:none}
+.rules li{padding:8px 12px;border-radius:14px;background:rgba(139,92,246,.1)}
+.empty{text-align:center;color:var(--muted);padding:18px}
+.pop{position:fixed;pointer-events:none;font-size:22px;animation:pop .9s forwards;z-index:9}
+@keyframes pop{to{transform:translateY(-70px) scale(1.5);opacity:0}}
+@media (max-width:420px){.row{grid-template-columns:1fr}.add{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="orb o1"></div><div class="orb o2"></div>
+<main>
+<header class="hero">
+  <div class="scene"><div class="cube"><i>📖</i><i>🧠</i><i>⏳</i><i>📝</i><i>⭐</i><i>🔮</i></div></div>
+  <h1>پلنر جادویی یادگیری</h1>
+  <p class="sub">پایه و رشته‌ات را انتخاب کن؛ برنامه‌ی مطالعه، مرور و آزمون ساخته می‌شود.</p>
+  <div class="xp"><span id="lvl">سطح ۱</span><div class="bar"><b id="xpb"></b></div><span id="xpt">۰ امتیاز</span></div>
+</header>
+
+<section class="panel tilt">
+  <h2>۱. مخاطب</h2>
+  <div class="row">
+    <label class="f">پایه<select id="grade"><option value="10">دهم</option><option value="11">یازدهم</option><option value="12">دوازدهم</option></select></label>
+    <label class="f">رشته<select id="field"><option value="riazi">ریاضی و فیزیک</option><option value="tajrobi">علوم تجربی</option><option value="ensani">علوم انسانی</option></select></label>
+  </div>
+</section>
+
+<section class="panel tilt">
+  <h2>۲. کتاب‌ها و مباحث <small id="cnt" style="color:var(--muted);font-weight:400"></small></h2>
+  <div id="books"></div>
+  <div class="add">
+    <input type="text" id="cb" placeholder="کتاب دلخواه">
+    <input type="text" id="ct" placeholder="مبحث دلخواه">
+    <button class="btn sm" id="addb">افزودن</button>
+  </div>
+</section>
+
+<section class="panel tilt">
+  <h2>۳. زمان‌بندی</h2>
+  <div class="row">
+    <label class="f">زمان مطالعه در روز (دقیقه)<input type="number" id="mins" min="30" max="600" step="10"></label>
+    <label class="f">ساعت شروع<input type="time" id="start"></label>
+    <label class="f">روش تمرکز<select id="blk"><option value="25">پومودورو ۲۵ + ۵ دقیقه استراحت</option><option value="50">بلوک عمیق ۵۰ + ۱۰ دقیقه استراحت</option></select></label>
+    <label class="f">تاریخ آزمون (اختیاری)<input type="date" id="exam"></label>
+  </div>
+  <p style="margin:14px 0 0"><button class="btn big" id="go">ساخت برنامه ✨</button></p>
+</section>
+
+<section class="panel" id="plan" hidden>
+  <h2>برنامه‌ی تو</h2>
+  <div id="warn"></div>
+  <div class="days" id="days"></div>
+  <div id="tasks"></div>
+</section>
+
+<section class="panel tilt">
+  <h2>قوانین یادگیری پشت این برنامه</h2>
+  <ul class="rules">
+    <li>🔁 <b>مرور فاصله‌دار:</b> هر مبحث ۱، ۳، ۷، ۱۴ و ۳۰ روز بعد از یادگیری دوباره مرور می‌شود (منحنی فراموشی ابینگهاوس).</li>
+    <li>📝 <b>یادآوری فعال:</b> آزمون هفتگی، حافظه را از «خواندن دوباره» قوی‌تر می‌کند.</li>
+    <li>🎲 <b>درهم‌آمیزی:</b> درس‌ها پشت‌سرهم عوض می‌شوند، نه یک درس برای چند روز.</li>
+    <li>⏳ <b>بلوک‌های متمرکز:</b> پومودورو یا بلوک ۵۰ دقیقه‌ای با استراحت کوتاه.</li>
+    <li>🌙 <b>ساعت اوج و خواب:</b> سخت‌ترین درس را در ساعتی بگذار که ذهنت تازه است و خواب شبانه را کم نکن.</li>
+  </ul>
+</section>
+</main>
+
+<script>
+const $=s=>document.querySelector(s);
+const fa=s=>String(s).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const T=x=>typeof x==='number'?Array.from({length:x},(_,i)=>'درس '+fa(i+1)):x.split('|');
+const C={
+10:[["فارسی ۱",18],["عربی ۱",8],["دین و زندگی ۱",12],["زبان انگلیسی ۱",4]],
+11:[["فارسی ۲",17],["عربی ۲",8],["دین و زندگی ۲",12],["زبان انگلیسی ۲",3]],
+12:[["فارسی ۳",18],["عربی ۳",8],["دین و زندگی ۳",12],["زبان انگلیسی ۳",3]]};
+const chem=["شیمی ۱","کیهان زادگاه الفبای هستی|ردپای گازها در زندگی|آب آهنگ زندگی"];
+const D={
+riazi:{
+10:[["ریاضی ۱","مجموعه، الگو و دنباله|مثلثات|توان‌های گویا و عبارت‌های جبری|معادله‌ها و نامعادله‌ها|تابع|شمارش بدون شمردن|آمار و احتمال"],["هندسه ۱","ترسیم‌های هندسی و استدلال|قضیه تالس و تشابه|چندضلعی‌ها|تجسم فضایی"],["فیزیک ۱","فیزیک و اندازه‌گیری|ویژگی‌های فیزیکی مواد|کار، انرژی و توان|ترمودینامیک"],chem],
+11:[["ریاضی ۲","هندسه تحلیلی و جبر|هندسه|تابع|مثلثات|توابع نمایی و لگاریتمی|آمار و احتمال"],["هندسه ۲","دایره|تبدیل‌های هندسی و کاربردها|روابط طولی در مثلث"],["فیزیک ۲","الکتریسیته ساکن|جریان الکتریکی و مدارهای جریان مستقیم|مغناطیس و القای الکترومغناطیسی"],["شیمی ۲","قدر هدایای زمینی را بدانیم|در پی غذای سالم|پوشاک، نیازی پایان‌ناپذیر"]],
+12:[["حسابان ۲","تابع|مثلثات|حدهای نامتناهی و حد در بی‌نهایت|مشتق|کاربردهای مشتق"],["هندسه ۳","ماتریس و کاربردها|مقاطع مخروطی|بردارها"],["ریاضیات گسسته","آشنایی با نظریه اعداد|گراف و مدل‌سازی|ترکیبیات"],["فیزیک ۳","حرکت بر خط راست|دینامیک و حرکت دایره‌ای|نوسان و موج|برهم‌کنش‌های موج|آشنایی با فیزیک اتمی|آشنایی با فیزیک هسته‌ای"],["شیمی ۳","مولکول‌ها در خدمت تندرستی|آسایش و رفاه در سایه شیمی|شیمی جلوه‌ای از هنر، زیبایی و ماندگاری|شیمی راهی به سوی آینده‌ای روشن‌تر"]]},
+tajrobi:{
+10:[["ریاضی ۱","مجموعه، الگو و دنباله|مثلثات|توان‌های گویا و عبارت‌های جبری|معادله‌ها و نامعادله‌ها|تابع|شمارش بدون شمردن|آمار و احتمال"],["زیست‌شناسی ۱","دنیای زنده|گوارش و جذب مواد|تبادلات گازی|گردش مواد در بدن|تنظیم اسمزی و دفع مواد زائد|از یاخته تا گیاه|جذب و انتقال مواد در گیاهان"],["فیزیک ۱","فیزیک و اندازه‌گیری|ویژگی‌های فیزیکی مواد|کار، انرژی و توان|ترمودینامیک"],chem],
+11:[["ریاضی ۲","هندسه تحلیلی و جبر|هندسه|تابع|مثلثات|توابع نمایی و لگاریتمی|آمار و احتمال"],["زیست‌شناسی ۲","تنظیم عصبی|حواس|دستگاه حرکتی|تنظیم شیمیایی|ایمنی بدن|تقسیم یاخته|تولیدمثل|تولیدمثل نهاندانگان|پاسخ گیاهان به محرک‌ها"],["فیزیک ۲","الکتریسیته ساکن|جریان الکتریکی و مدارهای جریان مستقیم|مغناطیس و القای الکترومغناطیسی"],["شیمی ۲","قدر هدایای زمینی را بدانیم|در پی غذای سالم|پوشاک، نیازی پایان‌ناپذیر"]],
+12:[["ریاضی ۳","تابع|مثلثات|حد|مشتق|کاربردهای مشتق|آمار و احتمال"],["زیست‌شناسی ۳","مولکول‌های اطلاعاتی|جریان اطلاعات در یاخته|انتقال اطلاعات در نسل‌ها|تغییر در اطلاعات وراثتی|از ماده به انرژی|از انرژی به ماده|فناوری‌های نوین زیستی|رفتارهای جانوران"],["فیزیک ۳","حرکت بر خط راست|دینامیک و حرکت دایره‌ای|نوسان و موج|برهم‌کنش‌های موج|آشنایی با فیزیک اتمی|آشنایی با فیزیک هسته‌ای"],["شیمی ۳","مولکول‌ها در خدمت تندرستی|آسایش و رفاه در سایه شیمی|شیمی جلوه‌ای از هنر، زیبایی و ماندگاری|شیمی راهی به سوی آینده‌ای روشن‌تر"]]},
+ensani:{
+10:[["علوم و فنون ادبی ۱",12],["منطق",12],["جامعه‌شناسی ۱",12],["تاریخ ۱",12],["جغرافیا ۱",12],["اقتصاد",10],["ریاضی و آمار ۱",6],["عربی تخصصی ۱",8]],
+11:[["علوم و فنون ادبی ۲",12],["فلسفه ۱",12],["جامعه‌شناسی ۲",12],["تاریخ ۲",12],["جغرافیا ۲",12],["روان‌شناسی",10],["ریاضی و آمار ۲",6],["عربی تخصصی ۲",8]],
+12:[["علوم و فنون ادبی ۳",12],["فلسفه ۲",12],["جامعه‌شناسی ۳",12],["تاریخ ۳",12],["جغرافیا ۳",12],["ریاضی و آمار ۳",6],["عربی تخصصی ۳",8]]}};
+
+let S={grade:'10',field:'riazi',off:{},custom:[],set:{mins:120,blk:'25',start:'16:00',exam:''},plan:null,done:{},xp:0,day:0};
+try{Object.assign(S,JSON.parse(localStorage.getItem('pl1')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('pl1',JSON.stringify(S))}catch(e){}};
+const books=()=>[...C[S.grade],...D[S.field][S.grade]].map(([n,t])=>({n,t:T(t)})).concat(S.custom);
+const sel=()=>books().map(b=>({n:b.n,t:b.t.filter(t=>!S.off[b.n+'::'+t])})).filter(b=>b.t.length);
+
+function renderBooks(){
+  $('#books').innerHTML=books().map(b=>{const on=b.t.filter(t=>!S.off[b.n+'::'+t]).length;
+  return `<details class="book"><summary><span class="spine"></span>${b.n}<small>${fa(on)} از ${fa(b.t.length)}</small></summary><div class="tl">${b.t.map(t=>`<label><input type="checkbox" data-k="${b.n}::${t}" ${S.off[b.n+'::'+t]?'':'checked'}>${t}</label>`).join('')}</div></details>`}).join('');
+  $('#cnt').textContent='('+fa(sel().reduce((a,b)=>a+b.t.length,0))+' مبحث انتخاب شده)';
+}
+$('#books').addEventListener('change',e=>{const k=e.target.dataset.k;if(!k)return;e.target.checked?delete S.off[k]:S.off[k]=1;save();const open=[...document.querySelectorAll('details.book')].map(d=>d.open);renderBooks();document.querySelectorAll('details.book').forEach((d,i)=>d.open=open[i]);});
+$('#grade').onchange=$('#field').onchange=()=>{S.grade=$('#grade').value;S.field=$('#field').value;S.off={};save();renderBooks()};
+$('#addb').onclick=()=>{const n=$('#cb').value.trim(),t=$('#ct').value.trim();if(!n||!t)return;let b=S.custom.find(x=>x.n===n);if(!b){b={n,t:[]};S.custom.push(b)}b.t.push(t);$('#ct').value='';save();renderBooks()};
+
+const tm=s=>{const[h,m]=s.split(':');return +h*60+ +m};
+const fmt=m=>fa(('0'+Math.floor(m/60)%24).slice(-2)+':'+('0'+m%60).slice(-2));
+function interleave(bs){const q=[],ls=bs.map(b=>b.t.map(t=>({n:b.n,t})));while(ls.some(l=>l.length))ls.forEach(l=>l.length&&q.push(l.shift()));return q}
+
+function build(){
+  S.set={mins:+$('#mins').value||120,blk:$('#blk').value,start:$('#start').value||'16:00',exam:$('#exam').value};
+  const blk=+S.set.blk,cap=S.set.mins,gap=blk===25?5:10,q=interleave(sel());
+  const base=new Date();base.setHours(0,0,0,0);
+  let max=90,warn='';
+  if(S.set.exam){const d=Math.ceil((new Date(S.set.exam)-base)/864e5);if(d>0)max=Math.min(d,150)}
+  const rev={},stud={},tasks=[];let total=q.length,id=0;
+  for(let d=0;d<max;d++){
+    const items=[];let used=0;
+    if(d>=6&&d%7===6){const rc=[];for(let k=d-7;k<d;k++)(stud[k]||[]).forEach(x=>rc.push(x));
+      if(rc.length)items.push({type:'test',title:'آزمون هفتگی',sub:'تست از: '+[...new Set(rc.map(x=>x.n))].join('، '),min:30}),used+=30}
+    (rev[d]||[]).forEach(r=>{items.push({type:'review',title:r.t.n+' | '+r.t.t,sub:'مرور '+fa(r.i+1)+' از ۵ · ابتدا از حافظه بنویس، بعد چک کن',min:15});used+=15});
+    while(q.length&&used+blk<=cap){const t=q.shift();items.push({type:'study',title:t.n+' | '+t.t,sub:'یادگیری مبحث جدید + خلاصه‌نویسی و چند تست',min:blk});used+=blk;(stud[d]=stud[d]||[]).push(t);
+      [1,3,7,14,30].forEach((k,i)=>(rev[d+k]=rev[d+k]||[]).push({t,i}))}
+    let t0=tm(S.set.start);
+    items.forEach(it=>{tasks.push({id:'t'+(id++),day:d,s:t0,...it});t0+=it.min+gap});
+    if(!q.length&&!Object.keys(rev).some(k=>+k>d))break;
+  }
+  if(q.length)warn=`⚠️ ${fa(q.length)} مبحث تا تاریخ آزمون جا نشد. زمان مطالعه‌ی روزانه را بیشتر کن یا مباحث را کم کن.`;
+  if(!total)warn='ابتدا دست‌کم یک مبحث انتخاب کن.';
+  S.plan={base:base.toISOString(),tasks,warn};S.done={};S.day=0;save();renderPlan();$('#plan').scrollIntoView({behavior:'smooth'});
+}
+const ICON={study:'📖',review:'🔁',test:'📝'},XP={study:20,review:10,test:30};
+function dayDate(d){const x=new Date(S.plan.base);x.setDate(x.getDate()+d);return x}
+function renderPlan(){
+  if(!S.plan)return;$('#plan').hidden=false;
+  const ds=[...new Set(S.plan.tasks.map(t=>t.day))];
+  $('#warn').innerHTML=S.plan.warn?`<div class="warn">${S.plan.warn}</div>`:'';
+  $('#days').innerHTML=ds.map(d=>{const dt=dayDate(d);return `<button class="day ${d===S.day?'on':''}" data-d="${d}"><b>${fa(dt.getDate())}</b>${dt.toLocaleDateString('fa-IR',{weekday:'short'})}</button>`}).join('');
+  const ts=S.plan.tasks.filter(t=>t.day===S.day);
+  $('#tasks').innerHTML=(ts.length?`<p class="ts" style="margin:0">${dayDate(S.day).toLocaleDateString('fa-IR',{weekday:'long',day:'numeric',month:'long'})}</p>`:'')+(ts.map(t=>`<div class="task ${t.type} ${S.done[t.id]?'done':''}"><div class="ico">${ICON[t.type]}</div><div class="tx"><div class="tt">${t.title}</div><div class="ts">${fmt(t.s)} تا ${fmt(t.s+t.min)} · ${fa(t.min)} دقیقه</div><div class="ts">${t.sub}</div></div><input class="chk" type="checkbox" data-id="${t.id}" ${S.done[t.id]?'checked':''} aria-label="انجام شد"></div>`).join('')||'<div class="empty">این روز استراحت است 🌙</div>');
+  xpUi();
+}
+function xpUi(){$('#lvl').textContent='سطح '+fa(Math.floor(S.xp/100)+1);$('#xpb').style.width=(S.xp%100)+'%';$('#xpt').textContent=fa(S.xp)+' امتیاز'}
+$('#days').addEventListener('click',e=>{const b=e.target.closest('.day');if(!b)return;S.day=+b.dataset.d;save();renderPlan()});
+$('#tasks').addEventListener('change',e=>{const id=e.target.dataset.id;if(!id)return;const t=S.plan.tasks.find(x=>x.id===id),on=e.target.checked;
+  on?S.done[id]=1:delete S.done[id];S.xp=Math.max(0,S.xp+(on?1:-1)*XP[t.type]);save();
+  if(on){const r=e.target.getBoundingClientRect(),p=document.createElement('div');p.className='pop';p.textContent='✨ +'+fa(XP[t.type]);p.style.left=r.left+'px';p.style.top=r.top+'px';document.body.appendChild(p);setTimeout(()=>p.remove(),900)}
+  renderPlan()});
+$('#go').onclick=build;
+
+document.querySelectorAll('.tilt').forEach(el=>{
+  el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`perspective(900px) rotateX(${-y*4}deg) rotateY(${x*4}deg)`});
+  el.addEventListener('pointerleave',()=>el.style.transform='');});
+for(let i=0;i<34;i++){const s=document.createElement('div');s.className='star';s.style.cssText=`top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*4}s`;document.body.prepend(s)}
+
+$('#grade').value=S.grade;$('#field').value=S.field;
+$('#mins').value=S.set.mins;$('#blk').value=S.set.blk;$('#start').value=S.set.start;$('#exam').value=S.set.exam;
+renderBooks();renderPlan();
+</script>
+</body>
+</html>
